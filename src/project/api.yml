@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  title: CheckInBot21 API
+  description: 
+  version: 0.1.9
+servers:
+  - url: http://checkinbot21.herokuapp.com
+    description: API server app on heroku cloud application platform
+paths:
+  /user/isAuth/{telegramUsername}:
+    get:
+      summary: check if user is registered or not.
+      parameters:
+        - name: telegramUsername
+          in: path
+          required: true
+          description: telegram username
+          schema:
+            type : string
+      responses: 
+        '200':
+          description: A user object.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  role:
+                    type: string
+                    value: adm || student
+        '401':
+          description: User is not registered
+
+  /user/registration/login/{username}:
+    get:
+      summary: .
+      parameters:
+        - name: username
+          in: path
+          required: true
+          description: 21 school platform username
+          schema:
+            type : string
+      responses: 
+        '200':
+          description: OK
+        '400':
+          description: Username is not exist in platform
+
+  /user/registration/checkcode/?username={login}&code={code}:
+    get:
+      summary: access code validation.
+      parameters:
+        - name: login
+          in: path
+          required: true
+          description: 21 school platform username
+          schema:
+            type : string
+        - name: code
+          in: path
+          required: true
+          description: user's input code
+          schema:
+            type : string
+      responses: 
+        '200':
+          description: OK
+        '400':
+          description: Code is not valid
+
+  /event/create?name={event_name}&description={desc}&type={event_type}&start_date={start_date}&end_date={end_date}&checkin_method={[...]}:
+    get:
+      summary: .
+      parameters:
+        - name: event_name
+          in: path
+          required: true
+          description: Event name (title)
+          schema:
+            type : string
+        - name: desc
+          in: path
+          required: true
+          description: some event description
+          schema:
+            type : string
+        - name: event_type
+          in: path
+          required: true
+          description: online or offline event
+          schema:
+            type : string
+        - name: start_date
+          in: path
+          required: true
+          description: start date
+          schema:
+            type : string
+        - name: end_date
+          in: path
+          required: true
+          description: end date
+          schema:
+            type : string
+      responses: 
+        '200':
+          description: OK
+        '400':
+          description: Some inputs are not filled
+
+  /event/list:
+    get:
+      summary: get list of events
+      parameters:
+      responses: 
+        '200':
+          description: List of events.
+          content:
+            application/json:
+              schema:
+                type: array of objects
+                properties:
+                  id:
+                    type: INTEGER
+                  event_name:
+                    type : string
+                  desc:
+                    type : string
+                  event_type:
+                    type : string
+                  start_date:
+                    type : string
+                  end_date:
+                    type : string
+  
+  /checkin/geo?coordinates={coordinates}:
+      get:
+        summary: send coordinates to check
+        parameters:
+          - name: coordinates
+            in: path
+            required: true
+            description: geo coordinates of current geolocation of user
+            schema:
+              type : Object
+                attitude:
+                  type: String
+                longitude:
+                  type: String
+        responses: 
+          '200':
+            description: Checkin success
+          '400':
+            description: Checkin failure
+  /checkin/quizz?answer={answer}:
+      get:
+        summary: send coordinates to check
+        parameters:
+          - name: answer
+            in: path
+            required: true
+            description: Secret answer for checkin
+            schema:
+              type : String
+        responses: 
+          '200':
+            description: Checkin success
+          '400':
+            description: Checkin failure
