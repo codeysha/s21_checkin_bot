@@ -3,11 +3,15 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 
 from misc import dp, bot
 
+
 # Заводим максимальынй стейт
 class Scenarios(StatesGroup):
     welcome = State()
     registration = State()
     select_role = State()
+
+
+class AdminState(StatesGroup):
     event_actions = State()
     select_event_type = State()
     select_city = State()
@@ -17,31 +21,34 @@ class Scenarios(StatesGroup):
     datetime_start = State()
     datetime_finish = State()
     create_poll = State()
-    send_location = State()
-    checkin = State()
     false_date = State()
     send_event_to_bd = State()
     send_custom_location = State()
-    # select_admin = State()
-    # select_peer = State()
-    # waiting_for_food_size = State()
+
+
+class PeerState(StatesGroup):
+    checkin = State()
+    send_location = State()
 
 
 class Auth(StatesGroup):
     email = State()
     code = State()
 
-from src.prototype.handlers import handlers, auth_handlers
+
+from src.prototype.handlers import handlers, handlers_auth, handlers_peer, handlers_admin
 
 
 def main():
-    # init_handlers(dp, bot)
+    # init handlers
     handlers.init_handlers(dp, bot)
-    auth_handlers.init_auth_handlers(dp, bot)
+    handlers_auth.init_handlers_auth(dp, bot)
+    handlers_admin.init_handlers_admin(dp, bot)
+    handlers_peer.init_handlers_peer(dp, bot)
+
     executor.start_polling(dp, skip_updates=True)
 
 
 if __name__ == "__main__":
     # Запуск бота
     main()
-    # executor.start_polling(dp, skip_updates=True)

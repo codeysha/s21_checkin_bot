@@ -110,12 +110,25 @@ def get_role_from_email(email):
         return 0
 
 
-def save_event(data):
+def save_event(data, quiz_id):
     db = db_connect();
     cursor = db.cursor(buffered=True)
-    query = """INSERT INTO events (city, type, description, event_name, longitude, latitude) 
-    VALUES(%s, %s, %s, %s, %s, %s) """
-    parameter = (data['city'], data['type'], data['description'], data['event_name'], data['longitude'], data['latitude'])
+    query = """
+    INSERT INTO events 
+        (type, city, event_name, description, lon, lat, event_date, start_time, end_time, quiz_id) 
+    VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s) """
+    parameter = (
+        data['type'],
+        data['city'],
+        data['event_name'],
+        data['description'],
+        data['longitude'],
+        data['latitude'],
+        data['date'],
+        data['time_start'],
+        data['time_finish'],
+        quiz_id,
+    )
     try:
         cursor.execute(query, parameter)
         row_no = cursor.lastrowid

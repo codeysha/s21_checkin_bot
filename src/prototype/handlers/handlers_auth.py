@@ -7,7 +7,7 @@ from src.prototype.services import mailer as mail
 from src.prototype.handlers import handlers
 
 
-def init_auth_handlers(dp, bot):
+def init_handlers_auth(dp, bot):
     @dp.message_handler(commands=['auth'], state="*")
     async def check_auth_step(message: types.Message):
         user = data_layer.get_user_by_id(message.from_user.id)

@@ -63,6 +63,7 @@ def checkin_kb() -> ReplyKeyboardMarkup:
     keyboard.add(*buttons)
     return keyboard
 
+
 def create_poll_kb() -> ReplyKeyboardMarkup:
     poll_keyboard = types.ReplyKeyboardMarkup(resize_keyboard=True)
     poll_keyboard.add(types.KeyboardButton(text="Создать викторину",
