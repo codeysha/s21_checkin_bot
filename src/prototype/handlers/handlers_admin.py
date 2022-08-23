@@ -40,7 +40,8 @@ def init_handlers_admin(dp, bot):
         dist = data_layer.get_all_events()
         print(dist)
         for el in dist:
-            await message.answer(el)
+            # await message.answer(el)
+            await message.answer(f'Мероприятие \"{el[3]}\" для г.{el[2].capitalize()} в {el[8]} {".".join(el[7].split("/"))}\n{el[4]}')
 
     # Шаблон онлайн мероприятия
     @dp.message_handler(text="Онлайн", state=AdminState.select_event_type)
@@ -141,7 +142,7 @@ def init_handlers_admin(dp, bot):
             async with state.proxy() as data:
                 if counter == 0:
                     data['time_start'] = handle_result
-                    await bot.edit_message_text(f'Время начала мероприятия: : {handle_result}',
+                    await bot.edit_message_text(f'Время начала мероприятия: : {handle_result.isoformat(timespec="minutes")}',
                                                 chat_id=query.from_user.id,
                                                 message_id=query.message.message_id)
                     await AdminState.datetime_finish.set()
@@ -157,7 +158,7 @@ def init_handlers_admin(dp, bot):
                 else:
                     data['time_finish'] = handle_result
                     await bot.edit_message_text(
-                        f'Время конца мероприятия: : {handle_result}',
+                        f'Время конца мероприятия: : {handle_result.isoformat(timespec="minutes")}',
                         chat_id=query.from_user.id,
                         message_id=query.message.message_id)
                     await AdminState.create_poll.set()
