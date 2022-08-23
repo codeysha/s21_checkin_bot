@@ -10,7 +10,7 @@ from aiogram.utils.exceptions import BotBlocked
 from aiogram_calendar import simple_cal_callback, SimpleCalendar
 from inline_timepicker.inline_timepicker import InlineTimepicker
 
-import src.prototype.dal as data_layer
+import dal as data_layer
 from keyboards import *
 from kernel import Scenarios
 
