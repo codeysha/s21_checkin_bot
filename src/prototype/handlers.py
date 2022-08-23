@@ -11,8 +11,8 @@ from aiogram_calendar import simple_cal_callback, SimpleCalendar
 from inline_timepicker.inline_timepicker import InlineTimepicker
 
 import src.prototype.dal as data_layer
-from src.prototype.basicui.keyboards import *
-from src.prototype.kernel import Scenarios
+from keyboards import *
+from kernel import Scenarios
 
 inline_timepicker = InlineTimepicker()
 

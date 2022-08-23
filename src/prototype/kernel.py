@@ -36,7 +36,8 @@ class Auth(StatesGroup):
     code = State()
 
 
-from src.prototype.handlers import handlers, handlers_auth, handlers_peer, handlers_admin
+from src.prototype.handlers import handlers_auth, handlers_peer, handlers_admin
+from src.prototype import handlers
 
 
 def main():

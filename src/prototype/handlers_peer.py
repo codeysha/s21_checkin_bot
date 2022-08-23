@@ -1,18 +1,14 @@
 import datetime
 import types
-from typing import Dict
 
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
-from aiogram.types import CallbackQuery
-from aiogram.types import Message, ReplyKeyboardRemove
-from aiogram.utils.exceptions import BotBlocked
-from aiogram_calendar import simple_cal_callback, SimpleCalendar
+from aiogram.types import Message
 from inline_timepicker.inline_timepicker import InlineTimepicker
 
-import src.prototype.dal as data_layer
-from src.prototype.basicui.keyboards import *
-from src.prototype.kernel import PeerState, Scenarios
+import dal as data_layer
+from keyboards import *
+from kernel import PeerState, Scenarios
 
 inline_timepicker = InlineTimepicker()
 counter = 0

@@ -1,10 +1,9 @@
 from aiogram.dispatcher import FSMContext
-from src.prototype.basicui.keyboards import *
+from keyboards import *
 
-import src.prototype.dal as data_layer
-from src.prototype.kernel import Auth, Scenarios
-from src.prototype.services import mailer as mail
-from src.prototype.handlers import handlers
+import dal as data_layer
+from kernel import Auth
+import mailer as mail
 
 
 def init_handlers_auth(dp, bot):

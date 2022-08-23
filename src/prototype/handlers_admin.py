@@ -9,9 +9,9 @@ from aiogram.types import Message, ReplyKeyboardRemove
 from aiogram_calendar import simple_cal_callback, SimpleCalendar
 from inline_timepicker.inline_timepicker import InlineTimepicker
 
-import src.prototype.dal as data_layer
-from src.prototype.basicui.keyboards import *
-from src.prototype.kernel import Scenarios, AdminState
+import dal as data_layer
+from keyboards import *
+from kernel import Scenarios, AdminState
 
 inline_timepicker = InlineTimepicker()
 counter = 0
