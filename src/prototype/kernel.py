@@ -36,7 +36,7 @@ class Auth(StatesGroup):
     code = State()
 
 
-from handlers import handlers_auth, handlers_peer, handlers_admin
+import handlers_auth, handlers_peer, handlers_admin
 import handlers
 
 
